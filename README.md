@@ -1,10 +1,11 @@
 # unaltered
 
 ## ClinicScraper.py:
-This is an intactivist web scraper which will search google for circumcision clinics in each city provided in locations.csv (top 100 US cities).
+This is an intactivist web scraper which will search google for circumcision clinics in each city provided in locations.csv. Currently doing top 50, subject to change.
 Timing and results per search can be found in the python file.
 Each successful search will update websites.sqlite3 with the urls found. You can use sqlitebrowser to view this.
 The end goal is to detect unlawful usage of expired health policy and harmful rhetoric about circumcision.
+Please use a vpn if you care about your location being private.
 <br>
 <br>
 

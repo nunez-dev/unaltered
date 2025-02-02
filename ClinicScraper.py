@@ -100,7 +100,7 @@ def scrape():
 # Database
 ####################
 # Scratchpad
-# CREATE TABLE IF NOT EXISTS websites(rank INT, title TEXT, url TEXT PRIMARY KEY, snippet TEXT, city TEXT, state TEXT, googler_location TEXT, time INT, website_tar BLOB);
+# CREATE TABLE IF NOT EXISTS websites(rank INT, url TEXT PRIMARY KEY, title TEXT, snippet TEXT, city TEXT, state TEXT, googler_location TEXT, time INT, website_tar BLOB);
 # ALTER TABLE websites ADD COLUMN googler_location TEXT
 # DELETE FROM websites; SELECT * FROM websites
 
@@ -118,7 +118,7 @@ def update_db(con, serp_arr):
             initial_row_count = cur.execute("SELECT COUNT(*) FROM " + TABLE).fetchone()[0]
 
             # Will silently fail insert if url is not UNIQUE, i.e already exists in db
-            insert = "INSERT OR IGNORE INTO " + TABLE + "(rank, title, url, snippet, city, state, googler_location, time) VALUES (?,?,?,?,?,?,?,?)"
+            insert = "INSERT OR IGNORE INTO " + TABLE + "(rank, url, title, snippet, city, state, googler_location, time) VALUES (?,?,?,?,?,?,?,?)"
             for result_arr in serp_arr:
                 cur.execute(insert, result_arr)
 
@@ -183,7 +183,7 @@ def parse_serp(soup, city, state, time):
     '''Will return a 2d array of scraped result values plus relevant args
     
     Returns:
-        [rank, name, url, snippet, city, state, googler_location, time (unix timestamp)], []...
+        [rank, url, name, snippet, city, state, googler_location, time (unix timestamp)], []...
     '''
     div = soup.find("div", id="search")
     h3s = div.find_all(h3_search)
@@ -193,11 +193,11 @@ def parse_serp(soup, city, state, time):
     googler_location = update_location[-1].parent.find_next("a").find_all("span")[1].text
     for i, h3 in enumerate(h3s):
         rank = i+1
-        link = h3.parent["href"]
+        url = h3.parent["href"]
         heading = h3.string
         parents = h3.find_parents(parent_search)
         snippet = parents[0].find_next_sibling("div").text
-        row = [rank, link, heading, snippet, city, state, googler_location, time]
+        row = [rank, url, heading, snippet, city, state, googler_location, time]
         results.append(row)
     return results
 

@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.3
+numpy==2.2.2
+Requests==2.32.3
+selenium==4.28.0
+tqdm==4.67.1

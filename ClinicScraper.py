@@ -1,4 +1,3 @@
-import requests
 from bs4 import BeautifulSoup
 import re
 import numpy as np
@@ -37,7 +36,7 @@ SLEEP_PER_SEARCH_HIGHER = 2.4
 
 #db
 DB = "websites.sqlite3"
-TABLE = "websites"
+TABLE = "website_list"
 
 # Disclaimer
 """
@@ -99,10 +98,9 @@ def scrape():
 ####################
 # Database
 ####################
-# Scratchpad
-# CREATE TABLE IF NOT EXISTS websites(rank INT, url TEXT PRIMARY KEY, title TEXT, snippet TEXT, city TEXT, state TEXT, googler_location TEXT, time INT, website_tar BLOB);
-# ALTER TABLE websites ADD COLUMN googler_location TEXT
-# DELETE FROM websites; SELECT * FROM websites
+# CREATE TABLE IF NOT EXISTS website_list(rank INT, url TEXT PRIMARY KEY, title TEXT, snippet TEXT, city TEXT, state TEXT, googler_location TEXT, time INT);
+# ALTER TABLE website_list ADD COLUMN googler_location TEXT
+# DELETE FROM website_list; SELECT * FROM website_list
 
 def update_db(con, serp_arr):
     '''Updates db with a given page of results

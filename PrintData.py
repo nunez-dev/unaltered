@@ -27,11 +27,6 @@ def get_db():
 # Main
 ####################
 
-# Rank, Url, Title, City, State, Offending Statement (Automatic), Offending Statement (Manual),
-# Wayback Machine (Manual), Contacted By, First Contact Date, Status, Expired Health Policy,
-# Scientifically Unsupported Claims, Religious Freedoms, Parental Freedoms, Appeal To Tradition,
-# Clinic, Hospital, Blog, Aggregator, Other.
-
 if __name__ == "__main__":
     dict_array = []
     rows = get_db()
@@ -57,7 +52,9 @@ if __name__ == "__main__":
             "Hospital": "",
             "Blog": "",
             "Aggregator": "",
-            "Other": ""
+            "Other": "",
+            "Website Dead": "",
+            "Notes": ""
         }
         dict_array.append(row_dict)
     print(json.dumps(dict_array, indent=4))

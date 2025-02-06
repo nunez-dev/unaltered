@@ -54,7 +54,6 @@ def parse_page():
 ####################
 # Database
 ####################
-# website_tar BLOB
 # CREATE TABLE IF NOT EXISTS website_content(url TEXT, website_tar BLOB, time INT, status_code INT, FOREIGN KEY(url) REFERENCES website_list(url));
 
 
